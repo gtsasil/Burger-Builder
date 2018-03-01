@@ -30,9 +30,9 @@ class BurgerBuilder extends Component {
 
     componentDidMount () {
         axios.get('https://burger-builder-c72f3.firebaseio.com/ingredients.json')
-        .then(response => {
-            this.setState({ingredients: response.data});
-        })
+        .then( response => {
+            this.setState( { ingredients: response.data } );
+        } )
         .catch( error => {
             this.setState( { error: true } );
         } );
@@ -81,11 +81,11 @@ class BurgerBuilder extends Component {
     }
 
     purchaseHandler = () => {
-        this.setState({purchasing: true});
+        this.setState( { purchasing: true } );
     }
 
-    purchaseCancelHandler= () => {
-        this.setState({purchasing: false});
+    purchaseCancelHandler = () => {
+        this.setState( { purchasing: false } );
     }
 
     purchaseContinueHandler = () => {
@@ -112,7 +112,8 @@ class BurgerBuilder extends Component {
         }
         let orderSummary = null;
         let burger = this.state.error ? <p>Ingredients can't be loaded!</p> : <Spinner />;
-        if(this.state.ingredients){
+
+        if ( this.state.ingredients ) {
             burger = (
                 <Fragment>
                     <Burger ingredients={this.state.ingredients} />
@@ -131,7 +132,7 @@ class BurgerBuilder extends Component {
                 purchaseCancelled={this.purchaseCancelHandler}
                 purchaseContinued={this.purchaseContinueHandler} />;
         }
-        if( this.state.loading){
+        if ( this.state.loading ) {
             orderSummary = <Spinner />;
         }
 
@@ -146,4 +147,4 @@ class BurgerBuilder extends Component {
     }
 }
 
-export default withErrorHandler(BurgerBuilder, axios);
+export default withErrorHandler( BurgerBuilder, axios );
